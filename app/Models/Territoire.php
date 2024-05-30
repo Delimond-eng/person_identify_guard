@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Territoire extends Model
 {
@@ -71,5 +72,14 @@ class Territoire extends Model
     public function province():BelongsTo
     {
         return $this->belongsTo(Province::class, 'province_id');
+    }
+
+    /**
+     * Renvoie les secteurs pour une territoires
+     * @return HasMany
+    */
+    public function secteurs(): HasMany
+    {
+        return $this->hasMany(Secteur::class, foreignKey: 'territoire_id', localKey: 'id');
     }
 }

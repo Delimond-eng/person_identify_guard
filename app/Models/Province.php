@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Province extends Model
 {
@@ -61,4 +62,13 @@ class Province extends Model
         'created_at',
         'updated_at'
     ];
+
+    /**
+     * Renvoie les territoires pour une province
+     * @return HasMany
+    */
+    public function territoires():HasMany
+    {
+        return $this->hasMany(Territoire::class, 'province_id', localKey: 'id');
+    }
 }

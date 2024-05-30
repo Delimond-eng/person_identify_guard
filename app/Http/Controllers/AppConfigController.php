@@ -171,4 +171,17 @@ class AppConfigController extends Controller
             return response()->json(['errors' => $e->getMessage() ]);
         }
     }
+
+    /**
+     * Voir les données de configuration
+     * @return JsonResponse
+    */
+    public function viewConfigDatas(): JsonResponse
+    {
+        $results = Province::with('territoires.secteurs.chefferies')->get();
+        return response()->json([
+            "status"=>"success",
+            "results"=>$results
+        ]);
+    }
 }
