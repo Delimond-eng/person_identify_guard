@@ -9,6 +9,7 @@ use App\Models\EtudeTitre;
 use App\Models\FamilleCharge;
 use App\Models\Personne;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -19,11 +20,13 @@ class PersonneIDGuardController extends Controller
      * @param StorePersonRequest $request
      * @return JsonResponse
      */
-    public function createPerson(StorePersonRequest $request): JsonResponse
+    public function createPerson(StorePersonRequest $request): RedirectResponse
     {
         try {
             //Valide les données entrées
             $data = $request->validated();
+
+            $data['idnat']=$this->generateIdnat();
 
             //Creation de la personne
             $personne = Personne::create($data);
@@ -56,18 +59,21 @@ class PersonneIDGuardController extends Controller
                 }
             }
 
-            return response()->json([
-                'status'=>'success',
-                'message' => 'Personne créée avec succès!'
-            ]);
+            return redirect()->back()->with('success', 'Personne créée avec succès');
 
         }
         catch (ValidationException $e) {
             $errors = $e->validator->errors()->all();
-            return response()->json(['errors' => $errors ]);
+            return redirect()->back()->with(['errors' => $errors ]);
         }
         catch (\Illuminate\Database\QueryException | \ErrorException $e){
-            return response()->json(['errors' => $e->getMessage() ]);
+            return redirect()->back()->with(['errors' =>  $e->getMessage() ]);
         }
     }
+
+    private function generateIdnat()
+    {
+        return substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 8);
+    }
+
 }

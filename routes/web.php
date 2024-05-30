@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('formulaire-personne');
 });
+Route::post('/store', [\App\Http\Controllers\PersonneIDGuardController::class, 'createPerson'])->name('person.store');
+
+Route::get('/provinces', [\App\Http\Controllers\AppConfigController::class, 'getProvinces']);
+Route::get('/territoires', [\App\Http\Controllers\AppConfigController::class, 'getTerritoires']);
+Route::get('/secteurs', [\App\Http\Controllers\AppConfigController::class, 'getSecteurs']);
+Route::get('/chefferies', [\App\Http\Controllers\AppConfigController::class, 'getChefferies']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Province;
 use App\Models\Secteur;
 use App\Models\Territoire;
+use App\Models\Chefferie;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -183,5 +184,45 @@ class AppConfigController extends Controller
             "status"=>"success",
             "results"=>$results
         ]);
+    }
+
+
+    public function getProvinces()
+    {
+        $provinces = Province::all();
+        return response()->json($provinces);
+    }
+
+    public function getTerritoires(Request $request)
+    {
+        $provinceId = $request->query('province_id');
+        if ($provinceId) {
+            $territoires = Territoire::where('province_id', $provinceId)->get();
+        } else {
+            $territoires = Territoire::all();
+        }
+        return response()->json($territoires);
+    }
+
+    public function getSecteurs(Request $request)
+    {
+        $territoireId = $request->query('territoire_id');
+        if ($territoireId) {
+            $secteurs = Secteur::where('territoire_id', $territoireId)->get();
+        } else {
+            $secteurs = Secteur::all();
+        }
+        return response()->json($secteurs);
+    }
+
+    public function getChefferies(Request $request)
+    {
+        $secteurId = $request->query('secteur_id');
+        if ($secteurId) {
+            $chefferies = Chefferie::where('secteur_id', $secteurId)->get();
+        } else {
+            $chefferies = Chefferie::all();
+        }
+        return response()->json($chefferies);
     }
 }
