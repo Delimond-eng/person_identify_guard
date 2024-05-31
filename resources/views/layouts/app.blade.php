@@ -40,15 +40,6 @@
 
 <body>
 
-    <div id="preloader">
-        <div data-loader="circle-side"></div>
-    </div>
-    <!-- /Preload -->
-
-    <div id="loader_form">
-        <div data-loader="circle-side-2"></div>
-    </div>
-    <!-- /loader_form -->
 
     <header>
         <div class="container">
@@ -209,12 +200,6 @@
 
     <!-- COMMON SCRIPTS -->
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/common_scripts.min.js') }}"></script>
-    <script src="{{ asset('assets/js/velocity.min.js') }}"></script>
-    <script src="{{ asset('assets/js/common_functions.js') }}"></script>
-
-    <!-- Wizard script with branch -->
-    <script src="{{ asset('assets/js/wizard_with_branch.js') }}"></script>
     @yield('scripts')
 </body>
 

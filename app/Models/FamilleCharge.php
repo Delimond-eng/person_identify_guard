@@ -16,7 +16,7 @@ class FamilleCharge extends Model
      *
      * @var string
      */
-    protected $table = 'enfants';
+    protected $table = 'famille_charges';
 
     /**
      * The primary key for the model.

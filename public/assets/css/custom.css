@@ -1,3 +1,23 @@
 /*============================================================================================*/
+
+
 /* Your custom styles below */
+
+
 /*============================================================================================*/
+
+.section-group {
+    position: relative;
+}
+
+.section-group .clean-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 30px;
+    width: 30px;
+    font-size: 12px;
+    background-color: #dee2e6 !important;
+    border: none;
+    z-index: 999;
+}

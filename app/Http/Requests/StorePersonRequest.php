@@ -13,7 +13,7 @@ class StorePersonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'idnat' => 'required|string',
+            'photo'=>'required|file',
             'nom' => 'required|string|max:255',
             'postnom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
@@ -21,13 +21,19 @@ class StorePersonRequest extends FormRequest
             'sexe' => 'required|string|max:1',
             'etat_civil' => 'required|string|in:celibataire,marié,divorcé,veuf',
             'adresse' => 'required|string|max:255',
+            'email' => 'nullable|email',
+            'telephone' => 'nullable|string',
             'nbre_personne_famille' => 'nullable|integer',
             'province_id' => 'required|exists:provinces,id',
             'territoire_id' => 'required|exists:territoires,id',
             'secteur_id' => 'required|exists:secteurs,id',
             'chefferie_id' => 'required|exists:chefferies,id',
+            'niveau_etude' => 'nullable|string',
+            'profession' => 'nullable|string',
+            'profession_institution' => 'nullable|string|max:255',
+            'nationalite' => 'nullable|string',
 
-            'conjoints' => 'required_if:etat_civil,marié|array',
+            /*'conjoints' => 'required_if:etat_civil,marié|array',
             'conjoints.*.conjoint_nom' => 'required_with:conjoints|string|max:255',
             'conjoints.*.conjoint_date_naissance' => 'required_with:conjoints|date',
 
@@ -41,7 +47,7 @@ class StorePersonRequest extends FormRequest
 
             'etude_titres' => 'nullable|array',
             'etude_titres.*.titre_libelle' => 'required_with:etude_titres|string|max:255',
-            'etude_titres.*.titre_date_obtention' => 'required_with:etude_titres|date',
+            'etude_titres.*.titre_date_obtention' => 'required_with:etude_titres|date',*/
         ];
     }
 }

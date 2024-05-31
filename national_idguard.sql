@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : jeu. 30 mai 2024 à 04:51
+-- Hôte : localhost
+-- Généré le : jeu. 30 mai 2024 à 17:56
 -- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.0.28
+-- Version de PHP : 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,6 +35,14 @@ CREATE TABLE `chefferies` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `chefferies`
+--
+
+INSERT INTO `chefferies` (`id`, `chefferie_libelle`, `status`, `secteur_id`, `created_at`, `updated_at`) VALUES
+(1, 'Terminus', 'actif', 285, NULL, NULL),
+(2, 'Sous région', 'actif', 285, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -797,7 +805,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `chefferies`
 --
 ALTER TABLE `chefferies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `conjoints`

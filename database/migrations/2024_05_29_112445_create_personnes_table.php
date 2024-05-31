@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('personnes', function (Blueprint $table) {
             $table->id();
             $table->string('idnat');
+            $table->string('photo');
             $table->string('nom');
             $table->string('postnom');
             $table->string('prenom');
@@ -23,11 +24,17 @@ return new class extends Migration
             $table->string('sexe');
             $table->string('etat_civil');
             $table->string('adresse');
+            $table->string('email')->nullable();
+            $table->string('telephone')->nullable();
             $table->string('nbre_personne_famille')->nullable();
             $table->unsignedBigInteger('province_id');
             $table->unsignedBigInteger('territoire_id');
             $table->unsignedBigInteger('secteur_id');
             $table->unsignedBigInteger('chefferie_id');
+            $table->string('niveau_etude')->nullable();
+            $table->string('profession')->nullable();
+            $table->string('profession_institution')->nullable();
+            $table->string('nationalite')->default('congolaise');
             $table->timestamps();
         });
     }

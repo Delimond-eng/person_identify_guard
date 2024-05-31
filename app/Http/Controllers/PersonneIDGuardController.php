@@ -23,53 +23,73 @@ class PersonneIDGuardController extends Controller
     public function createPerson(StorePersonRequest $request): RedirectResponse
     {
         try {
-            //Valide les données entrées
+            // Valide les données entrées
             $data = $request->validated();
 
-            $data['idnat']=$this->generateIdnat();
+            // Génère l'ID National
+            $data['idnat'] = $this->generateIdnat();
 
-            //Creation de la personne
+            // Gère le téléchargement de la photo
+            if ($request->hasFile('photo')) {
+                $domain = $request->getHttpHost();
+                $image = $request->file('photo');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('uploads/persons'), $imageName);
+                $data['photo'] = 'http://' . $domain . '/uploads/persons/' . $imageName;
+            }
+
+            // Création de la personne
             $personne = Personne::create($data);
 
-            if ($request->filled('conjoints')) {
-                foreach ($request->conjoints as $conjointData) {
-                    $conjointData['personne_id'] = $personne->id;
-                    Conjoint::create($conjointData);
+            // Gestion des conjoints
+            if ($request->has('conjoints')) {
+                foreach ($request->input('conjoints') as $conjointData) {
+                    if (!empty($conjointData['conjoint_nom']) && !empty($conjointData['conjoint_date_naissance'])) {
+                        $conjointData['personne_id'] = $personne->id;
+                        Conjoint::create($conjointData);
+                    }
                 }
             }
 
-            if ($request->filled('enfants')) {
-                foreach ($request->enfants as $enfantData) {
-                    $enfantData['personne_id'] = $personne->id;
-                    Enfant::create($enfantData);
+            // Gestion des enfants
+            if ($request->has('enfants')) {
+                foreach ($request->input('enfants') as $enfantData) {
+                    if (!empty($enfantData['eft_nom']) && !empty($enfantData['eft_date_naissance'])) {
+                        $enfantData['personne_id'] = $personne->id;
+                        Enfant::create($enfantData);
+                    }
                 }
             }
 
-            if ($request->filled('famille_charges')) {
-                foreach ($request->famille_charges as $familleChargeData) {
-                    $familleChargeData['personne_id'] = $personne->id;
-                    FamilleCharge::create($familleChargeData);
+            // Gestion des membres de la famille sous tutelle
+            if ($request->has('famille_charges')) {
+                foreach ($request->input('famille_charges') as $familleChargeData) {
+                    if (!empty($familleChargeData['nom_membre_famille']) && !empty($familleChargeData['lien_parent'])) {
+                        $familleChargeData['personne_id'] = $personne->id;
+                        FamilleCharge::create($familleChargeData);
+                    }
                 }
             }
 
-            if ($request->filled('etude_titres')) {
-                foreach ($request->etude_titres as $etudeTitreData) {
-                    $etudeTitreData['personne_id'] = $personne->id;
-                    EtudeTitre::create($etudeTitreData);
+            // Gestion des titres académiques
+            if ($request->has('etude_titres')) {
+                foreach ($request->input('etude_titres') as $etudeTitreData) {
+                    if (!empty($etudeTitreData['titre_libelle']) && !empty($etudeTitreData['titre_date_obtention'])) {
+                        $etudeTitreData['personne_id'] = $personne->id;
+                        EtudeTitre::create($etudeTitreData);
+                    }
                 }
             }
 
-            return redirect()->back()->with('success', 'Personne créée avec succès');
+        return redirect()->back()->with('success', 'Personne créée avec succès, le numéro d\'identification est :'.$personne->idnat);
 
-        }
-        catch (ValidationException $e) {
-            $errors = $e->validator->errors()->all();
-            return redirect()->back()->with(['errors' => $errors ]);
-        }
-        catch (\Illuminate\Database\QueryException | \ErrorException $e){
-            return redirect()->back()->with(['errors' =>  $e->getMessage() ]);
+        } catch (ValidationException $e) {
+            return redirect()->back()->with(['errors' => $e->validator->errors()->all()]);
+        } catch (\Illuminate\Database\QueryException | \ErrorException $e) {
+            return redirect()->back()->with(['errors' => [$e->getMessage()]])->withInput();
         }
     }
+
 
     private function generateIdnat()
     {

@@ -30,10 +30,13 @@ class Personne extends Model
      * @var array
      */
     protected $fillable = [
-        'idnat',
+        'idnat','photo',
         'nom','postnom','prenom','date_naissance',
-        'sexe','etat_civil', 'adresse','nbre_personne_famille',
-        'province_id','territoire_id','secteur_id','chefferie_id'
+        'sexe','etat_civil', 'adresse','email',
+        'telephone','nbre_personne_famille',
+        'province_id','territoire_id','secteur_id','chefferie_id',
+        'niveau_etude', 'profession',
+        'profession_institution','nationalite'
     ];
 
     /**
