@@ -5,7 +5,7 @@
         <div class="row no-gutters">
             <div class="col-lg-3">
                 <div id="left_form">
-                    <figure><img src="assets/img/logo_1.png" alt="" height="120"></figure>
+                    <figure><img src="assets/img/drapeau_drc.png" alt="" height="120"></figure>
                     <h2>Formulaire <span>d'identification des personnnes </span></h2>
                     <a href="#0" id="more_info" data-toggle="modal" data-target="#more-info"><i
                             class="pe-7s-info"></i></a>
@@ -56,7 +56,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="nom">Nom *</label>
                                             <input type="text" class="form-control" id="nom" name="nom" placeholder="entrez le nom..." required>
@@ -70,22 +70,23 @@
                                             <input type="text" class="form-control" id="prenom" name="prenom" placeholder="entrez le prénom..." required>
                                         </div>
                                     </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="email">Email(optionnel)</label>
+                                            <input type="email" class="form-control" placeholder="entrez l'adresse email...ex:email@domain" id="email" name="email" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telephone">Téléphone *</label>
+                                            <input type="tel" class="form-control" placeholder="entrez le téléphone...ex:+(243)xxxx" id="telephone" name="telephone" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="date_naissance">Date de Naissance*</label>
+                                            <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
+                                        </div>
+                                    </div>
                                 </div>
 
                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="email">Email(optionnel)</label>
-                                        <input type="email" class="form-control" placeholder="entrez l'adresse email...ex:email@domain" id="email" name="email" >
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="telephone">Téléphone *</label>
-                                        <input type="tel" class="form-control" placeholder="entrez le téléphone...ex:+(243)xxxx" id="telephone" name="telephone" >
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="date_naissance">Date de Naissance*</label>
-                                        <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
-                                    </div>
-
                                     <div class="form-group mt-4 radio_input col-md-6">
                                         <label for="sexe" class="mr-3 ">Sexe :*</label>
                                         <label class="container_radio mr-3">Masculin

@@ -10,13 +10,13 @@
     <title>Formulaire d'identification</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="{{ asset('assets/img/logo_1.png') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('assets/img/logo_1.png') }}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('assets/img/logo_1.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/drapeau_drc.png') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('assets/img/drapeau_drc.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('assets/img/drapeau_drc.png') }}">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
-        href="{{ asset('assets/img/logo_1.png') }}">
+        href="{{ asset('assets/img/drapeau_drc.png') }}">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
-        href="{{ asset('assets/img/logo_1.png') }}">
+        href="{{ asset('assets/img/drapeau_drc.png') }}">
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"
@@ -45,8 +45,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-3">
-                    <a href="#"><img src="assets/img/logo_3.png" alt="" width="178" height="70" class="d-none d-md-block"><img
-                            src="assets/img/logo_1.png" alt="" width="62" height="45" class="d-block d-md-none"></a>
+                    <a href="#">RD Congo</a>
                 </div>
                 <div class="col-9">
                     <div id="social">
@@ -81,7 +80,7 @@
 
     <div class="container">
         <footer id="home" class="clearfix">
-            <p>© 2024 Ville de Kinshasa</p>
+            <p>© 2024 RDC</p>
             <ul>
                 <li><a href="javascript:void(0)" class="animated_link">Questions</a></li>
                 <li><a href="javascript:void(0)" class="animated_link">Termes & conditions d'utilisation</a></li>
