@@ -206,7 +206,6 @@
     <script src="{{ asset('assets/js/common_functions.js') }}"></script>
 
     <!-- Wizard script with branch -->
-    <script src="{{ asset('assets/js/wizard_with_branch.js') }}"></script>
     @yield('scripts')
 </body>
 

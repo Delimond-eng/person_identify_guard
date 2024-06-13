@@ -22,8 +22,7 @@ class PersonneIDGuardController extends Controller
      */
     public function createPerson(StorePersonRequest $request): RedirectResponse
     {
-        try {
-            // Valide les données entrées
+         // Valide les données entrées
             $data = $request->validated();
 
             // Génère l'ID National
@@ -81,13 +80,10 @@ class PersonneIDGuardController extends Controller
                 }
             }
 
-        return redirect()->back()->with('success', 'Personne créée avec succès, le numéro d\'identification est :'.$personne->idnat);
-
-        } catch (ValidationException $e) {
-            return redirect()->back()->with(['errors' => $e->validator->errors()->all()]);
-        } catch (\Illuminate\Database\QueryException | \ErrorException $e) {
-            return redirect()->back()->with(['errors' => [$e->getMessage()]])->withInput();
-        }
+        return redirect()->back()->with([
+            'id'=> $personne->id,
+            'success'=>'Personne créée avec succès, le numéro d\'identification est :'.$personne->idnat
+        ]);
     }
 
 

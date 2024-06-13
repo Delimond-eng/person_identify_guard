@@ -61,7 +61,8 @@ class Enfant extends Model
      */
     protected $dates = [
         'created_at',
-        'updated_at'
+        'updated_at',
+        'eft_date_naissance'
     ];
 
     /**

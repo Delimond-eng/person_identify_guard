@@ -52,6 +52,7 @@ class EtudeTitre extends Model
     protected $casts = [
         'created_at'=>'datetime:d/m/Y H:i',
         'updated_at'=>'datetime:d/m/Y H:i',
+        'titre_date_obtention'=> 'date:d/m/Y'
     ];
 
     /**
@@ -61,7 +62,8 @@ class EtudeTitre extends Model
      */
     protected $dates = [
         'created_at',
-        'updated_at'
+        'updated_at',
+        'titre_date_obtention'
     ];
 
     /**

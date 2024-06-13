@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Personne extends Model
 {
@@ -101,5 +103,22 @@ class Personne extends Model
     public function chefferie():BelongsTo
     {
         return $this->belongsTo(Chefferie::class, foreignKey: 'chefferie_id');
+    }
+
+
+    public function conjoint():HasOne{
+        return $this->hasOne(Conjoint::class, foreignKey:'personne_id', localKey:'id');
+    }
+
+    public function etudes():HasMany{
+        return $this->hasMany(EtudeTitre::class, foreignKey:'personne_id', localKey:'id');
+    }
+
+    public function membres():HasMany{
+        return $this->hasMany(FamilleCharge::class, foreignKey:'personne_id', localKey:'id');
+    }
+
+    public function enfants():HasMany{
+        return $this->hasMany(Enfant::class, foreignKey:'personne_id', localKey:'id');
     }
 }

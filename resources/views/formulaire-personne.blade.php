@@ -271,4 +271,12 @@
 
 @section("scripts")
 <script src="{{asset('assets/js/app.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        @if (session('id'))
+            const id = "{{ session('id') }}"
+            window.open(`/print/${id}`, '_blank');
+        @endif
+    });
+</script>
 @endsection
