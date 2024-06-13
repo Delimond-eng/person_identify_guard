@@ -40,20 +40,16 @@
 
 <body>
 
-
     <header>
         <div class="container">
             <div class="row">
                 <div class="col-3">
-                    <a href="#"><img src="assets/img/logo_3.png" alt="" width="178" height="70" class="d-none d-md-block"><img
-                            src="assets/img/logo_1.png" alt="" width="62" height="45" class="d-block d-md-none"></a>
+                    <a href="#"><img src="{{ asset('assets/img/drapeau_drc.png') }}" alt="" height="50"></a>
                 </div>
                 <div class="col-9">
                     <div id="social">
                         <ul>
-                            <li><a href="javascript:void(0)"><i class="icon-facebook"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="icon-twitter"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="icon-google"></i></a></li>
+
                         </ul>
                     </div>
                     <!-- /social -->
@@ -63,7 +59,12 @@
                         <ul class="cd-primary-nav">
                             <li><a href="#" class="animated_link">Formulaire d'identification citoyen</a></li>
                             <li><a href="#" class="animated_link">Formulaire d'enregistrement des vehicules</a></li>
-                            <li><a href="#" class="animated_link">Formulaire d'enregistrement des motos</a></li>
+                            <li>
+                                <a href="#" class="animated_link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Déconnexion</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
                         </ul>
                     </nav>
                     <!-- /menu -->
@@ -200,6 +201,12 @@
 
     <!-- COMMON SCRIPTS -->
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/common_scripts.min.js') }}"></script>
+    <script src="{{ asset('assets/js/velocity.min.js') }}"></script>
+    <script src="{{ asset('assets/js/common_functions.js') }}"></script>
+
+    <!-- Wizard script with branch -->
+    <script src="{{ asset('assets/js/wizard_with_branch.js') }}"></script>
     @yield('scripts')
 </body>
 

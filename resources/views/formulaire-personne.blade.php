@@ -5,7 +5,7 @@
         <div class="row no-gutters">
             <div class="col-lg-3">
                 <div id="left_form">
-                    <figure><img src="assets/img/logo_1.png" alt="" height="120"></figure>
+                    <figure><img src="{{ asset('assets/img/drapeau_drc.png') }}" alt="" height="120"></figure>
                     <h2>Formulaire <span>d'identification des personnnes </span></h2>
                     <a href="#0" id="more_info" data-toggle="modal" data-target="#more-info"><i
                             class="pe-7s-info"></i></a>

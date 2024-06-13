@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 Route::get('/', function () {
     return view('formulaire-personne');
 });
@@ -22,3 +23,6 @@ Route::get('/provinces', [\App\Http\Controllers\AppConfigController::class, 'get
 Route::get('/territoires', [\App\Http\Controllers\AppConfigController::class, 'getTerritoires']);
 Route::get('/secteurs', [\App\Http\Controllers\AppConfigController::class, 'getSecteurs']);
 Route::get('/chefferies', [\App\Http\Controllers\AppConfigController::class, 'getChefferies']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
