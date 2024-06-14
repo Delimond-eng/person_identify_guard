@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/view.configs', [\App\Http\Controllers\AppConfigController::class, 'viewConfigDatas']);
 
+Route::get('/check.npi/{npi}', [App\Http\Controllers\AppConfigController::class,'checkNPI']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

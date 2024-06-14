@@ -6,6 +6,7 @@ use App\Models\Province;
 use App\Models\Secteur;
 use App\Models\Territoire;
 use App\Models\Chefferie;
+use App\Models\Personne;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -186,13 +187,21 @@ class AppConfigController extends Controller
         ]);
     }
 
-
+    /**
+     * Summary of getProvinces
+     * @return JsonResponse|mixed
+     */
     public function getProvinces()
     {
         $provinces = Province::all();
         return response()->json($provinces);
     }
 
+    /**
+     * *
+     * @param \Illuminate\Http\Request $request
+     * @return JsonResponse|mixed
+     */
     public function getTerritoires(Request $request)
     {
         $provinceId = $request->query('province_id');
@@ -203,7 +212,11 @@ class AppConfigController extends Controller
         }
         return response()->json($territoires);
     }
-
+    /**
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return JsonResponse|mixed
+     */
     public function getSecteurs(Request $request)
     {
         $territoireId = $request->query('territoire_id');
@@ -215,6 +228,11 @@ class AppConfigController extends Controller
         return response()->json($secteurs);
     }
 
+    /**
+     * Summary of getChefferies
+     * @param \Illuminate\Http\Request $request
+     * @return JsonResponse|mixed
+     */
     public function getChefferies(Request $request)
     {
         $secteurId = $request->query('secteur_id');
@@ -224,5 +242,27 @@ class AppConfigController extends Controller
             $chefferies = Chefferie::all();
         }
         return response()->json($chefferies);
+    }
+
+
+
+    /**
+     * Verifie la validité d'un NPI
+     * @param mixed $npi
+     * @return JsonResponse|mixed
+     */
+    public function checkNPI($npi){
+        $person = Personne::where("idnat", $npi)->first();
+        if ($person) {
+            return response()->json([
+                "status"=> "success",
+                "personne"=>$person
+            ]);
+        }
+        else{
+            return response()->json([
+                "status"=> "error",
+            ]);
+        }
     }
 }
