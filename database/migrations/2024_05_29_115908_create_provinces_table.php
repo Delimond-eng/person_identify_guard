@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('provinces', function (Blueprint $table) {
             $table->id();
+            $table->string('province_code');
             $table->string('province_libelle');
             $table->string('status')->default('actif');
             $table->timestamps();

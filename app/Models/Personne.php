@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 
 class Personne extends Model
 {
@@ -120,5 +121,21 @@ class Personne extends Model
 
     public function enfants():HasMany{
         return $this->hasMany(Enfant::class, foreignKey:'personne_id', localKey:'id');
+    }
+
+
+     /**
+     * Generate a unique code.
+     *
+     * @return string
+     */
+    public static function generateUniqueCode()
+    {
+       do {
+            $letters = strtoupper(Str::random(3));
+            $digits = rand(1000, 9999);
+            $code = "KN-"."P-". $digits."-".$letters;
+        } while (self::where('idnat', $code)->exists());
+        return $code;
     }
 }

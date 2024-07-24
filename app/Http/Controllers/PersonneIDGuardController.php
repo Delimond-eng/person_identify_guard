@@ -26,7 +26,7 @@ class PersonneIDGuardController extends Controller
             $data = $request->validated();
 
             // Génère l'ID National
-            $data['idnat'] = $this->generateIdnat();
+            $data['idnat'] = Personne::generateUniqueCode();
 
             // Gère le téléchargement de la photo
             if ($request->hasFile('photo')) {
@@ -86,10 +86,5 @@ class PersonneIDGuardController extends Controller
         ]);
     }
 
-
-    private function generateIdnat()
-    {
-        return substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 8);
-    }
 
 }
