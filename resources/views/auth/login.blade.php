@@ -61,5 +61,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{asset('assets/login/js/show-password.js')}}"></script>
+    <script src="{{asset('assets2/js/show-password.js')}}"></script>
 @endsection

@@ -32,7 +32,8 @@
                                         class="ri-group-fill me-2 align-middle"></i>Charge familliale</button>
                             </li>
                         </ul>
-                        <div class="tab-content" id="myTabContent">
+                        <form class="tab-content" id="myTabContent" method="POST" action="{{ route('person.store') }}" enctype="multipart/form-data">
+                            @csrf
                             <div class="tab-pane fade show active border-0 p-0" id="personal-tab-pane" role="tabpanel"
                                 aria-labelledby="personal-tab-pane" tabindex="0">
                                 <div class="p-4">
@@ -122,8 +123,8 @@
                                                     <div class="row gy-3">
                                                         <div class="col-xl-6">
                                                             <div class="form-floating">
-                                                                <label for="conjoint_nom" class="form-label">Nom du Conjoint *</label>
                                                                 <input type="text" placeholder="entrez le nom du conjoint..." class="form-control" id="conjoint_nom" name="conjoints[0][conjoint_nom]">
+                                                                <label for="conjoint_nom" class="form-label">Nom du Conjoint *</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6">
@@ -193,6 +194,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="px-4 py-3 border-top border-block-start-dashed d-sm-flex justify-content-end">
                                     <button type="button" class="btn btn-primary" id="personal-next-trigger">Suvant<i class="ri-arrow-right-line ms-2 align-middle d-inline-block"></i></button>
                                 </div>
@@ -205,12 +207,17 @@
                                         <div>Etudes faites(optionnel)</div>
                                     </div>
                                     <div class="row gy-4 mb-4">
-
                                         <div class="col-xl-12">
-                                            <div id="enfants-section" class="card custom-card border shadow-none mb-3">
+                                            <div class="form-floating">
+                                                <input type="text" placeholder="entrez le niveau d'étude de la personnne" class="form-control" id="niveau_etude" name="niveau_etude" required>
+                                                <label for="niveau_etude">Niveau d'étude(optionnel) </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div id="etudes-section" class="card custom-card border shadow-none mb-3">
                                                 <div class="card-header d-flex justify-content-between w-100">
                                                     <div class="card-title">
-                                                        Enfants *
+                                                        Titre *
                                                     </div>
                                                     <button type="button" class="btn btn-primary btn-sm" id="add-etude-titre">
                                                         <i class="ri-add-line me-1 align-middle fs-14 fw-semibold d-inline-block"></i>
@@ -218,8 +225,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="card-body">
-                                                    <div class="row gy-3" id="enfants-list">
-                                                        <!-- Dynamic children sections will be appended here -->
+                                                    <div class="row gy-3">
                                                         <div class="col-xl-6 enfant-group section-group" id="enfant-0">
                                                             <div class="form-floating mb-3">
                                                                 <input type="text" placeholder="entrez le libellé du titre..." class="form-control" name="etude_titres[0][titre_libelle]">
@@ -243,6 +249,7 @@
                                     <button type="button" class="btn btn-primary m-1" id="study-next-trigger">Suivant<i class="ri-arrow-right-line align-middle ms-2 d-inline-block"></i></button>
                                 </div>
                             </div>
+
                             <div class="tab-pane fade border-0 p-0" id="photo-tab-pane"
                                 role="tabpanel" aria-labelledby="photo-tab-pane" tabindex="0">
                                 <div class="p-4">
@@ -256,7 +263,7 @@
                                                 <div class="col-md-3">
                                                     <div class="photo-picker" id="photo-picker" style="position: relative;">
                                                         <video id="video-preview" style="border-radius: 5px; position: relative; cursor: pointer;" height="150" class="d-none img-fluid" autoplay></video>
-                                                        <img id="photo-preview" style="border-radius: 5px; position: relative; width: 100%; cursor: pointer;" height="150" class="img-fluid" src="{{ asset('assets/img/camera-placeholder.jpg') }}">
+                                                        <img id="photo-preview" style="border-radius: 5px; position: relative; width: 100%; cursor: pointer;" height="150" class="img-fluid" src="{{ asset('assets2/images/placeholder.jpg') }}">
 
                                                         <button type="button" id="capture-btn" class="btn btn-outline-primary btn-sm w-100 mt-3">
                                                             <i class="ri-camera-2-line me-1"></i>Lancer caméra
@@ -276,6 +283,7 @@
                                     <button type="button" class="btn btn-primary m-1" id="photo-next-trigger">Suivant<i class="ri-arrow-right-line align-middle ms-2 d-inline-block"></i></button>
                                 </div>
                             </div>
+
                             <div class="tab-pane fade border-0 p-0" id="family-tab-pane" role="tabpanel"
                                 aria-labelledby="family-tab-pane" tabindex="0">
                                 <div class="p-4">
@@ -324,7 +332,7 @@
                                         </div>
 
                                         <div class="col-xl-12">
-                                            <div id="enfants-section" class="card custom-card border shadow-none mb-3">
+                                            <div id="membres-section" class="card custom-card border shadow-none mb-3">
                                                 <div class="card-header d-flex justify-content-between w-100">
                                                     <div class="card-title">
                                                         Membres de la Famille Sous Tutelle *
@@ -335,7 +343,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="card-body">
-                                                    <div class="row gy-3" id="enfants-list">
+                                                    <div class="row gy-3" id="membres-list">
                                                         <!-- Dynamic children sections will be appended here -->
                                                         <div class="col-xl-6 enfant-group section-group" id="enfant-0">
                                                             <div class="form-floating mb-3">
@@ -364,10 +372,10 @@
                                 </div>
                                 <div class="px-4 py-3 border-top border-block-start-dashed d-sm-flex justify-content-between">
                                     <button type="button" class="btn btn-primary-light m-1" id="back-family-trigger"><i class="ri-arrow-left-line me-2 align-middle d-inline-block"></i>Précédent</button>
-                                    <button type="button" class="btn btn-success m-1">Sauvegarder<i class="ri-check-double-fill align-middle ms-2 d-inline-block"></i></button>
+                                    <button type="submit" class="btn btn-success m-1">Sauvegarder<i class="ri-check-double-fill align-middle ms-2 d-inline-block"></i></button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -376,7 +384,35 @@
     </div>
 @endsection
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets2/libs/sweetalert2/sweetalert2.min.css') }}">
+@endsection
 @section('scripts')
+    <script src="{{ asset('assets2/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets2/js/app.js') }}"></script>
     <script src="{{ asset('assets2/js/tab_manager.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('errors'))
+                 @php
+                    $errors = session('errors')->all();
+                    $errorMessages = implode('\n', $errors);
+                @endphp
+                Swal.fire({
+                    icon:'error',
+                    title:'Echec de traitement.',
+                    html: '{!! nl2br(e($errorMessages)) !!}'
+                });
+            @endif
+            @if (session('id'))
+                Swal.fire({
+                    icon:'success',
+                    title:'NPI : {{ session('npi') }}',
+                    text:'Personne enregistré avec succès !'
+                });
+                const id = "{{ session('id') }}"
+                window.open(`/print/${id}`, '_blank');
+            @endif
+        });
+    </script>
 @endsection

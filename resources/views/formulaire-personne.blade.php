@@ -36,7 +36,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                    @endif
+                        @endif
                         <div id="middle-wizard">
                             <div class="container-fluid">
                                 <h3 class="main_question ml-2"><i class="arrow_right"></i>Veuillez renseigner les champs requis !</h3>

@@ -15,17 +15,17 @@
     <title>Formulaire d'enregistrement des motos </title>
 
     <!-- FAVICON -->
-    <link rel="icon" href="{{asset('assets/img/drapeau_drc.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{asset('assets2/images/flag.png')}}" type="image/x-icon">
 
     <!-- BOOTSTRAP CSS -->
-    <link id="style" href="{{asset('assets/login/libs/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link id="style" href="{{asset('assets2/libs/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- ICONS CSS -->
-    <link href="{{asset('assets/login/icon-fonts/icons.css')}}" rel="stylesheet">
+    <link href="{{asset('assets2/icon-fonts/icons.css')}}" rel="stylesheet">
 
     <!-- APP SCSS -->
-    <link rel="preload" as="style" href="{{asset('assets/login/css/app.css')}}" />
-    <link rel="stylesheet" as="style" href="{{asset('assets/login/css/app.css')}}" />
+    <link rel="preload" as="style" href="{{asset('assets2/app.css')}}" />
+    <link rel="stylesheet" as="style" href="{{asset('assets2/app.css')}}" />
 </head>
 
 <body>
@@ -39,7 +39,7 @@
 <!-- SCRIPTS -->
 
 <!-- BOOTSTRAP JS -->
-<script src="{{asset('assets/login/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('assets2/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 <!-- SECTION SCRIPTS -->
 @yield('scripts')

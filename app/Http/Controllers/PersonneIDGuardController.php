@@ -82,7 +82,8 @@ class PersonneIDGuardController extends Controller
 
         return redirect()->back()->with([
             'id'=> $personne->id,
-            'success'=>'Personne créée avec succès, le numéro d\'identification est :'.$personne->idnat
+            'success'=>'Personne créée avec succès',
+            'npi'=>$personne->idnat
         ]);
     }
 

@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     handleMaritalStatusChange();
 
-    handleAddEnfant();
+    addEnfantField();
 
-    handleAddFamilleCharge();
+    addFamilleMembreField();
 
-    handleAddEtudeTitre();
+    addEtudeTitreField();
 
     loadDynamicOptions();
 
@@ -76,103 +76,202 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 
-    function handleAddEnfant() {
+    function addEnfantField() {
+        let enfantsSection = document.getElementById("enfants-section");
+        let addEnfantBtn = enfantsSection.querySelector(".btn-primary.btn-sm");
+        let enfantsList = document.getElementById("enfants-list");
         let enfantIndex = 1;
-        let btnAddEft = document.getElementById("add-enfant");
-        if (btnAddEft) {
-            btnAddEft.addEventListener("click", function() {
-                addEnfantField(enfantIndex);
-                enfantIndex++;
+
+        addEnfantBtn.addEventListener("click", function() {
+            // Create the new child name input field
+            let newNomDiv = document.createElement("div");
+            newNomDiv.className = "col-xl-6 enfant-group section-group";
+            newNomDiv.id = `enfant-${enfantIndex}`;
+
+            let nomInputDiv = document.createElement("div");
+            nomInputDiv.className = "form-floating mb-3";
+
+            let nomInput = document.createElement("input");
+            nomInput.type = "text";
+            nomInput.className = "form-control";
+            nomInput.id = `enfant_nom-${enfantIndex}`;
+            nomInput.placeholder = "entrez le nom complet de l'enfant...";
+            nomInput.name = `enfants[${enfantIndex}][eft_nom]`;
+            let nomLabel = document.createElement("label");
+            nomLabel.htmlFor = `enfant_nom-${enfantIndex}`;
+            nomLabel.textContent = "Nom de l'Enfant";
+
+            nomInputDiv.appendChild(nomInput);
+            nomInputDiv.appendChild(nomLabel);
+            newNomDiv.appendChild(nomInputDiv);
+
+            // Create the new child date of birth input field
+            let newDateDiv = document.createElement("div");
+            newDateDiv.className = "col-xl-6 enfant-group section-group";
+            newDateDiv.id = `enfant-${enfantIndex}`;
+
+            let dateInputDiv = document.createElement("div");
+            dateInputDiv.className = "form-floating";
+
+            let dateInput = document.createElement("input");
+            dateInput.type = "date";
+            dateInput.className = "form-control";
+            dateInput.id = `enfant_date_naissance-${enfantIndex}`;
+            dateInput.placeholder = "Date de Naissance";
+            dateInput.name = `enfants[${enfantIndex}][eft_date_naissance]`;
+
+            let dateLabel = document.createElement("label");
+            dateLabel.htmlFor = `enfant_date_naissance-${enfantIndex}`;
+            dateLabel.textContent = "Date de Naissance de l'Enfant";
+
+            dateInputDiv.appendChild(dateInput);
+            dateInputDiv.appendChild(dateLabel);
+            newDateDiv.appendChild(dateInputDiv);
+
+            // Append the new input fields to the enfants list
+            enfantsList.appendChild(newNomDiv);
+            enfantsList.appendChild(newDateDiv);
+
+            // Increment the index for the next pair of input fields
+            enfantIndex++;
+        });
+    }
+
+    function addFamilleMembreField() {
+        let familleSection = document.getElementById("membres-section");
+        let addMembreBtn = familleSection.querySelector(".btn-primary.btn-sm");
+        let enfantsList = document.getElementById("membres-list");
+        let membreIndex = 1;
+
+        addMembreBtn.addEventListener("click", function() {
+            // Create the new family member name input field
+            let newNomDiv = document.createElement("div");
+            newNomDiv.className = "col-xl-6 enfant-group section-group";
+            newNomDiv.id = `enfant-${membreIndex}`;
+
+            let nomInputDiv = document.createElement("div");
+            nomInputDiv.className = "form-floating mb-3";
+
+            let nomInput = document.createElement("input");
+            nomInput.type = "text";
+            nomInput.className = "form-control";
+            nomInput.placeholder = "entrez le nom du membre de la famille...";
+            nomInput.name = `famille_charges[${membreIndex}][nom_membre_famille]`;
+
+            let nomLabel = document.createElement("label");
+            nomLabel.textContent = "Nom du Membre";
+
+            nomInputDiv.appendChild(nomInput);
+            nomInputDiv.appendChild(nomLabel);
+            newNomDiv.appendChild(nomInputDiv);
+
+            // Create the new family member relationship select field
+            let newLienDiv = document.createElement("div");
+            newLienDiv.className = "col-xl-6 enfant-group section-group";
+            newLienDiv.id = `enfant-${membreIndex}`;
+
+            let lienInputDiv = document.createElement("div");
+            lienInputDiv.className = "form-floating";
+
+            let lienSelect = document.createElement("select");
+            lienSelect.className = "form-select";
+            lienSelect.name = `famille_charges[${membreIndex}][lien_parent]`;
+            let hiddenOption = document.createElement("option");
+            hiddenOption.selected = true;
+            hiddenOption.hidden = true;
+            hiddenOption.textContent = "Sélectionner un lien de parenté";
+            lienSelect.appendChild(hiddenOption);
+            let lienOptions = [
+                "Parent",
+                "Frère",
+                "Soeur",
+                "Cousin(e)",
+                "Ami(e)",
+                "Autre",
+            ];
+            lienOptions.forEach(function(optionText) {
+                let option = document.createElement("option");
+                option.value = optionText;
+                option.textContent = optionText;
+                lienSelect.appendChild(option);
             });
-        }
+
+            let lienLabel = document.createElement("label");
+            lienLabel.textContent = "Lien de Parenté";
+
+            lienInputDiv.appendChild(lienSelect);
+            lienInputDiv.appendChild(lienLabel);
+            newLienDiv.appendChild(lienInputDiv);
+
+            // Append the new input fields to the enfants list
+            enfantsList.appendChild(newNomDiv);
+            enfantsList.appendChild(newLienDiv);
+
+            // Increment the index for the next pair of input fields
+            membreIndex++;
+        });
     }
 
-    function addEnfantField(index) {
-        const enfantGroup = `
-            <div class="enfant-group border p-3 mb-3 section-group">
-                <button class="clean-btn" type="button">
-                    <i class="icon-trash-2"></i>
-                </button>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="enfant_nom">Nom de l'Enfant</label>
-                        <input type="text" placeholder="entrez le nom complet de l'enfant..." class="form-control" name="enfants[${index}][eft_nom]" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="enfant_date_naissance">Date de Naissance de l'Enfant</label>
-                        <input type="date" class="form-control" name="enfants[${index}][eft_date_naissance]" required>
-                    </div>
-                </div>
-            </div>`;
-        document
-            .getElementById("enfants-section")
-            .insertAdjacentHTML("beforeend", enfantGroup);
-    }
+    function addEtudeTitreField() {
+        let etudesSection = document.getElementById("etudes-section");
+        let addEtudeTitreBtn = document.getElementById("add-etude-titre");
+        let etudeIndex = 1;
 
-    function handleAddFamilleCharge() {
-        let familleChargeIndex = 1;
-        let btnAddCharge = document.getElementById("add-famille-charge");
-        if (btnAddCharge) {
-            btnAddCharge.addEventListener("click", function() {
-                addFamilleChargeField(familleChargeIndex);
-                familleChargeIndex++;
-            });
-        }
-    }
+        addEtudeTitreBtn.addEventListener("click", function() {
+            // Create the new title input field
+            let newTitleDiv = document.createElement("div");
+            newTitleDiv.className = "col-xl-6 enfant-group section-group";
+            newTitleDiv.id = `enfant-${etudeIndex}`;
 
-    function addFamilleChargeField(index) {
-        const familleChargeGroup = `
-            <div class="famille-charge-group border p-3 mb-3 section-group">
-                <button class="clean-btn" type="button">
-                    <i class="icon-trash-2"></i>
-                </button>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="famille_nom">Nom du Membre</label>
-                        <input type="text" placeholder="entrez le nom du membre de la famille..." class="form-control" name="famille_charges[${index}][nom_membre_famille]" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="famille_lien">Lien de Parenté</label>
-                        <input type="text" placeholder="entrez lien parental..." class="form-control" name="famille_charges[${index}][lien_parent]" required>
-                    </div>
-                </div>
-            </div>`;
-        document
-            .getElementById("famille-charges-section")
-            .insertAdjacentHTML("beforeend", familleChargeGroup);
-    }
+            let titleInputDiv = document.createElement("div");
+            titleInputDiv.className = "form-floating mb-3";
 
-    function handleAddEtudeTitre() {
-        let etudeTitreIndex = 1;
-        let btnAddEtude = document.getElementById("add-etude-titre");
-        if (btnAddEtude) {
-            btnAddEtude.addEventListener("click", function() {
-                addEtudeTitreField(etudeTitreIndex);
-                etudeTitreIndex++;
-            });
-        }
-    }
+            let titleInput = document.createElement("input");
+            titleInput.type = "text";
+            titleInput.placeholder = "entrez le libellé du titre...";
+            titleInput.className = "form-control";
+            titleInput.name = `etude_titres[${etudeIndex}][titre_libelle]`;
 
-    function addEtudeTitreField(index) {
-        const etudeTitreGroup = `
-            <div class="etude-titre-group border p-3 mb-3 section-group">
-                <button class="clean-btn" type="button">
-                    <i class="icon-trash-2"></i>
-                </button>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="titre_libelle">Libellé du Titre</label>
-                        <input type="text" placeholder="entrez le libellé du titre..." class="form-control" name="etude_titres[${index}][titre_libelle]" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="titre_date_obtention">Date d'Obtention</label>
-                        <input type="date" class="form-control" name="etude_titres[${index}][titre_date_obtention]" required>
-                    </div>
-                </div>
-            </div>`;
-        document
-            .getElementById("etudes-section")
-            .insertAdjacentHTML("beforeend", etudeTitreGroup);
+            let titleLabel = document.createElement("label");
+            titleLabel.htmlFor = `titre_libelle`;
+            titleLabel.textContent = "Libellé du Titre";
+
+            titleInputDiv.appendChild(titleInput);
+            titleInputDiv.appendChild(titleLabel);
+            newTitleDiv.appendChild(titleInputDiv);
+
+            // Create the new date input field
+            let newDateDiv = document.createElement("div");
+            newDateDiv.className = "col-xl-6 enfant-group section-group";
+            newDateDiv.id = `enfant-${etudeIndex}`;
+
+            let dateInputDiv = document.createElement("div");
+            dateInputDiv.className = "form-floating";
+
+            let dateInput = document.createElement("input");
+            dateInput.type = "date";
+            dateInput.className = "form-control";
+            dateInput.name = `etude_titres[${etudeIndex}][titre_date_obtention]`;
+
+            let dateLabel = document.createElement("label");
+            dateLabel.htmlFor = `titre_date_obtention`;
+            dateLabel.textContent = "Date d'Obtention";
+
+            dateInputDiv.appendChild(dateInput);
+            dateInputDiv.appendChild(dateLabel);
+            newDateDiv.appendChild(dateInputDiv);
+
+            // Append the new input fields to the etudes section
+            etudesSection
+                .querySelector(".card-body .row")
+                .appendChild(newTitleDiv);
+            etudesSection
+                .querySelector(".card-body .row")
+                .appendChild(newDateDiv);
+
+            // Increment the index for the next pair of input fields
+            etudeIndex++;
+        });
     }
 
     function loadDynamicOptions() {
