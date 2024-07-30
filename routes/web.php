@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Personne;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
-        return view('formulaire-personne');
+        return view("forms");
     });
     Route::get('/print/{personneID}', function ($personneID) {
         $person = Personne::with('province')
@@ -42,5 +44,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/chefferies', [\App\Http\Controllers\AppConfigController::class, 'getChefferies']);
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    
+
 });

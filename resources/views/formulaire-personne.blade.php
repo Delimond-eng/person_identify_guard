@@ -54,7 +54,6 @@
                                             </label>
                                             <input type="file" id="photo" name="photo" style="visibility: hidden">
                                         </div>
-
                                     </div>
                                     <div class="col-md-9">
                                         <div class="form-group">
@@ -124,7 +123,6 @@
                                 <div id="conjoints-section" class="d-none form-section">
                                     <h4>Conjoint *</h4>
                                     <div class="conjoint-group border p-3 mb-3">
-
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="conjoint_nom">Nom du Conjoint *</label>
