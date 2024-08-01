@@ -12,7 +12,7 @@
     <meta name="keywords" content="IT Developer, Gaston delimond, ">
 
     <!-- TITLE -->
-    <title>Formulaire d'enregistrement des motos </title>
+    <title>Personnes Form </title>
 
     <!-- FAVICON -->
     <link rel="icon" href="{{asset('assets2/images/flag.png')}}" type="image/x-icon">
